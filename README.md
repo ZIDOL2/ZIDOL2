@@ -44,9 +44,9 @@
 ![Oracle SQL](https://img.shields.io/badge/-Oracle%20SQL-%23F80000?style=flat&logo=oracle&logoColor=white)
 
 #### Most Used Languages
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=JaeHyeok718&layout=compact&theme=tokyonight)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=ZIDOL2&layout=compact&theme=tokyonight)
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=JaeHyeok718&show_icons=true&theme=tokyonight)
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=ZIDOL2&show_icons=true&theme=tokyonight)
 
 
 
