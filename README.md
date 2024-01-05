@@ -1,22 +1,22 @@
-# Hey! Nice to see you! My name is JaeHyeok Jang 👋
+# Hey! Nice to see you! My name is JISU JUNG 👋
 ## 🙌 소개 (Introduce)
 - 🎓 KH정보교육원 수료(23.08 ~ 24.01)
 - 💻 풀스택 개발자로 성장중 
-- 🌱 현재 배우고 있는 것: Spring Framework
-- 🏠 거주지: Seoul, Nowon
+- 🌱 현재 배우고 있는 것: React
+- 🏠 거주지: Gyeonggi-do, Goyang-si
 - 🎯 단기 목표: Spring을 보다 능숙하게, JavaScript를 보다 다양하게 !! 
 - 🌟 장기 목표: 열심히 공부해서 인정 받는 Developer가 될때까지!
-- 🎮 취미: 영화보기, 축구, 등산, PS4
+- 🎮 취미: 게임, 노래방, 요리
 - 💬 물어보고 싶은 것: 현업에서의 Spring Framework 최신 동향
-- 📫 연락 방법: sorento7718@naver.com
-- 😄 대명사: 👨
+- 📫 연락 방법: 189_oo@naver.com
+- 😄 대명사: 👧
   
 
 
 ## ✉️ 연락처(contact information)
-- Email: sorento7718@naver.com
-- 💬(KAKAOTALK) : sorento7718
-- ![Instagram DM](https://img.shields.io/badge/Instagram-DM-blue?style=flat&logo=instagram&logoColor=white) (https://www.instagram.com/jaehk__?igsh=MWx5MXFkeG5qZDVueQ%3D%3D&utm_source=qr)
+- Email: 189_oo@naver.com
+- 💬(KAKAOTALK) : 48485868
+- ![Instagram DM](https://img.shields.io/badge/Instagram-DM-blue?style=flat&logo=instagram&logoColor=white) (https://www.instagram.com/in.dx_x?igsh=YTQwZjQ0NmI0OA==)
   
 ## 🛠 기술 스택(Things I code With)
 
@@ -54,8 +54,8 @@
 
 ## 🌍 KH정보교육원에서의 프로젝트들
 
-- **[NILILI]**: 서울여행지를 소개하는 목적 
-주말에 놀러나가고 싶은데 어디를 갈지 모르는 사람들에게 asdasd   
+- **[NILILI]**: 서울여행지를 소개하는 목적  
+주말에 놀러나가고 싶은데 어디를 갈지 모르는 사람들에게  
 간단한 게임과 구독결제를 통해 여행지 소개   
 이중 프로젝트 전반적인 관리와 회원관련기능(로그인,회원가입,...등등등)  
 과 챗봇을 구현함으로써 사용자의 접근성을 높힘 (프로젝트 진행율 : 100%)  
