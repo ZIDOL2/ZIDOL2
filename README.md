@@ -1,5 +1,6 @@
 # Hey! Nice to see you! My name is JISU JUNG 👋
 ## 🙌 소개 (Introduce)
+- 🎓 단국대학교 식량생명공학전공/식품영양학부전공 졸업(19.03 ~ 24.02)
 - 🎓 KH정보교육원 수료(23.08 ~ 24.01)
 - 💻 풀스택 개발자로 성장중 
 - 🌱 현재 배우고 있는 것: React
