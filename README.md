@@ -8,13 +8,13 @@
 - 🌟 장기 목표: 열심히 공부해서 인정 받는 Developer가 될때까지!
 - 🎮 취미: 게임, 노래방, 요리
 - 💬 물어보고 싶은 것: 현업에서의 Spring Framework 최신 동향
-- 📫 연락 방법: 189_oo@naver.com
+- 📫 연락 방법: simbaya1890@gmail.com
 - 😄 대명사: 👧
   
 
 
 ## ✉️ 연락처(contact information)
-- Email: 189_oo@naver.com
+- Email: simbaya1890@gmail.com
 - 💬(KAKAOTALK) : 48485868
 - ![Instagram DM](https://img.shields.io/badge/Instagram-DM-blue?style=flat&logo=instagram&logoColor=white) (https://www.instagram.com/in.dx_x?igsh=YTQwZjQ0NmI0OA==)
   
@@ -53,6 +53,11 @@
 
 
 ## 🌍 KH정보교육원에서의 프로젝트들
-
-- **[tinyFarm]**: 하는중.
+**[Personal_pet_mate]** : 여러가지 반려동물 제품을 비교하여 쉽고 만족스러운 구매 서비스를 제공하는 사이트
+- 회원가입, 로그인, 커뮤니티게시판(공지사항/자유게시판) front 및 back 담당 (진행률100%)
+  ([Personal_pet_mate](https://github.com/ZIDOL2/personal_pet_mate.git))
+**[tinyFarm]** : 도시농부를 꿈꾸는 사람들에게 텃밭 정보와 영농일지 작성 서비스를 제공하는 사이트
+  - 마이페이지 기능구현 담당 (회원관리/영농일지/활동내역/거래내역)
+  - 회원간 친목을 위한 상대회원의 정보를 보는 기능 구현 담당
+    [진행률(90%) 아직 개발중이므로 브런치를 main이 아닌 jisu에서 현재 진행상황 확인 가능]
  ([tinyFarm](https://github.com/ZIDOL2/tinyFarm))
