@@ -8,13 +8,13 @@
 - 🌟 장기 목표: 열심히 공부해서 인정 받는 Developer가 될때까지!
 - 🎮 취미: 게임, 노래방, 요리
 - 💬 물어보고 싶은 것: 현업에서의 Spring Framework 최신 동향
-- 📫 연락 방법: simbaya1890@gmail.com
+- 📫 연락 방법: 189_oo@naver.com
 - 😄 대명사: 👧
   
 
 
 ## ✉️ 연락처(contact information)
-- Email: simbaya1890@gmail.com
+- Email: 189_oo@naver.com
 - 💬(KAKAOTALK) : 48485868
 - ![Instagram DM](https://img.shields.io/badge/Instagram-DM-blue?style=flat&logo=instagram&logoColor=white) (https://www.instagram.com/in.dx_x?igsh=YTQwZjQ0NmI0OA==)
   
