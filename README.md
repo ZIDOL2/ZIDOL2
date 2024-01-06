@@ -15,7 +15,7 @@
 
 ## ✉️ 연락처(contact information)
 - Email: 189_oo@naver.com
-- 💬(KAKAOTALK) : 48485868
+- 💬(KAKAOTALK) : In_dx
 - ![Instagram DM](https://img.shields.io/badge/Instagram-DM-blue?style=flat&logo=instagram&logoColor=white) (https://www.instagram.com/in.dx_x?igsh=YTQwZjQ0NmI0OA==)
   
 ## 🛠 기술 스택(Things I code With)
