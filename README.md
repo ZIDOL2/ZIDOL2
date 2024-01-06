@@ -10,7 +10,8 @@
 - 🎮 취미: 게임, 노래방, 요리
 - 💬 물어보고 싶은 것: 현업에서의 Spring Framework 최신 동향
 - 📫 연락 방법: 189_oo@naver.com
-- 😄 대명사: 👧
+- 😄 대명사: 👧  
+- 📝 Notion : https://url.kr/r4y35i
   
 
 
