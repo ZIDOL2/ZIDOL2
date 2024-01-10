@@ -3,15 +3,14 @@
 - 🎓 단국대학교 식량생명공학전공/식품영양학부전공 졸업(19.03 ~ 24.02)
 - 🎓 KH정보교육원 수료(23.08 ~ 24.01)
 - 💻 풀스택 개발자로 성장중 
-- 🌱 현재 배우고 있는 것: React
 - 🏠 거주지: Gyeonggi-do, Goyang-si
 - 🎯 단기 목표: Spring을 보다 능숙하게, JavaScript를 보다 다양하게 !! 
-- 🌟 장기 목표: 열심히 공부해서 인정 받는 Developer가 될때까지!
+- 🌟 장기 목표: 숲을 보는 Project Manager가 되자!
 - 🎮 취미: 게임, 노래방, 요리
 - 💬 물어보고 싶은 것: 현업에서의 Spring Framework 최신 동향
 - 📫 연락 방법: 189_oo@naver.com
 - 😄 대명사: 👧  
-- 📝 Notion : https://url.kr/r4y35i 👈구현 페이지와 설명을 보고싶다면❓
+- 📝 Notion : https://url.kr/r4y35i 👈'정지수'에 대해서, 구현 페이지와 설명을 더 보고싶다면❓
   
 
 
