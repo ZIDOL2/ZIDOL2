@@ -58,4 +58,4 @@
 **[tinyFarm]** : 도시농부를 꿈꾸는 사람들에게 텃밭 정보와 영농일지 작성 서비스를 제공하는 사이트  
   - 마이페이지 기능구현 전체 담당 (회원관리/영농일지/활동내역/거래내역)  
   - 회원간 친목을 위한 상대회원의 정보를 보는 기능 구현 담당  
-    [진행률(100%)][tinyFarm](https://github.com/ZIDOL2/tinyFarm)
+    [진행률(100%)] [tinyFarm](https://github.com/ZIDOL2/tinyFarm)
