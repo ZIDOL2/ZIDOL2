@@ -1,6 +1,6 @@
-package com.zidol.programmers.test.run;
+package com.zidol.programmers.base.run;
 
-import com.zidol.programmers.test.Base01;
+import com.zidol.programmers.base.Base01;
 
 public class Run {
 
