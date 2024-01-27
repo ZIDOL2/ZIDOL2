@@ -59,3 +59,7 @@
   - 마이페이지 기능구현 전체 담당 (회원관리/영농일지/활동내역/거래내역)  
   - 회원간 친목을 위한 상대회원의 정보를 보는 기능 구현 담당  
     [진행률(100%)] [tinyFarm](https://github.com/ZIDOL2/tinyFarm)
+
+## 📖 현재 공부 중  
+**[Study](https://github.com/ZIDOL2/ZIDOL2.git)**  
+- 브런치에서 확인 가능
