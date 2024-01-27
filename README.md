@@ -4,8 +4,7 @@
 - 🎓 KH정보교육원 수료(23.08 ~ 24.01)
 - 💻 풀스택 개발자로 성장중 
 - 🏠 거주지: Gyeonggi-do, Goyang-si
-- 🎯 단기 목표: 취업 전까지 JAVA공부(1/13 ~)
-- 🌟 장기 목표: 숲을 보는 Project Manager가 되자!
+- 🌟 목표: 숲을 보는 Project Manager가 되자!
 - 🎮 취미: 게임, 노래방, 요리
 - 📫 연락 방법: 189_oo@naver.com
 - 😄 대명사: 👧  
