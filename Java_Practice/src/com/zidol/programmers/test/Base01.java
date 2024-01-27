@@ -8,8 +8,8 @@ public class Base01 {
 	public int solution(String n_str) {
 		int answer = 0;
         answer = Integer.parseInt(n_str);
-        return answer;
-    }
+        return answer; 
+    } 
 	
 	//카운트 업
 	public int[] solution2(int start_num, int end_num) {
