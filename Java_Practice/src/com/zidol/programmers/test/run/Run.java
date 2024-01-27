@@ -10,6 +10,6 @@ public class Run {
 		
 		//b.solution("10");
 		b.solution2(3, 10);
-	}
+	} 
 
 }
