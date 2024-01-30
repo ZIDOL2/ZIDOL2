@@ -60,5 +60,5 @@
     [진행률(100%)] [tinyFarm](https://github.com/ZIDOL2/tinyFarm)
 
 ## 📖 현재 공부 중  
-**[Study](https://github.com/ZIDOL2/ZIDOL2.git)**  
+**[Study](https://github.com/ZIDOL2/ZIDOL2/tree/javastudy)**  
 - 브런치에서 확인 가능
