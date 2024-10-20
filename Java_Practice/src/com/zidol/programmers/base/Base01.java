@@ -39,22 +39,23 @@ public class Base01 {
 	
 	// 정수 a와 b 출력하기
 	public void solution04() {
-		Scanner sc = new Scanner(System.in);
+		try (Scanner sc = new Scanner(System.in)) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
 
-		int a = sc.nextInt();
-		int b = sc.nextInt();
-
-		System.out.println("a = " + a + "\nb = " + b);
+			System.out.println("a = " + a + "\nb = " + b);
+		}
 	}
 
 	//문자열 반복해서 출력하기
 	public void solution05() {
-		Scanner sc = new Scanner(System.in);
-		String str = sc.next();
-		int n = sc.nextInt();
+		try (Scanner sc = new Scanner(System.in)) {
+			String str = sc.next();
+			int n = sc.nextInt();
 
-		for (int i = 0; i < n; i++) {
-			System.out.print(str+"\t");
+			for (int i = 0; i < n; i++) {
+				System.out.print(str+"\t");
+			}
 		}
 	}
 

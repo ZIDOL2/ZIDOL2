@@ -8,9 +8,9 @@ public class Run {
 		
 		Base01 b = new Base01();
 		
-		//b.solution01("10");
-		//b.solution02(3, 10);
-		//b.solution03();
+//		b.solution01("10");
+//		b.solution02(3, 10);
+//		b.solution03();
 		//b.solution04();
 		b.solution05();
 	} 
