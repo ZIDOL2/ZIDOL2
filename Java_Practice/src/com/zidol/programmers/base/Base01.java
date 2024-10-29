@@ -34,7 +34,9 @@ public class Base01 {
 	public void solution03() {
 		Scanner sc = new Scanner(System.in);
         String a = sc.next();
-        System.out.println(a);  
+        System.out.println(a);
+        
+        sc.close();
 	}
 	
 	// 정수 a와 b 출력하기

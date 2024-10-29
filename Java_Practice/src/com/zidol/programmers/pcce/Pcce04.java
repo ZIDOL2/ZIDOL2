@@ -24,6 +24,8 @@ public class Pcce04 {
 		}
 
 		System.out.println(month);
+		
+		sc.close();
 	}
 
 }

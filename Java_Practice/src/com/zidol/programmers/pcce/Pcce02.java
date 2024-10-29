@@ -13,6 +13,8 @@ public class Pcce02 {
         int b_square = (c*c) - (a*a); //c-a 로 되어있었다.
 
         System.out.println(b_square);
+        
+        sc.close();
 	}
 
 }

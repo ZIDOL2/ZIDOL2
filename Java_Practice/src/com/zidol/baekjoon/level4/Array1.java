@@ -25,6 +25,8 @@ public class Array1 {
 			}
 				
 			System.out.println(cnt);
+			
+			sc.close();
 			}		
 	
 }

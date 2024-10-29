@@ -19,5 +19,7 @@ public class Pcce03 {
 		}
 
 		System.out.println(answer);
+		
+		sc.close();
 	}
 }
