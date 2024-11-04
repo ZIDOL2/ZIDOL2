@@ -1,4 +1,4 @@
-package com.zidol.baekjoon.level2;
+package src.com.zidol.baekjoon.level2;
 
 import java.util.Scanner;
 

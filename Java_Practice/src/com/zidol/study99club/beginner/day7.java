@@ -1,4 +1,4 @@
-package com.zidol.study99club.beginner;
+package src.com.zidol.study99club.beginner;
 
 import java.io.BufferedReader;
 import java.io.IOException;

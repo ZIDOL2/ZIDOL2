@@ -1,8 +1,9 @@
 package src.com.zidol.baekjoon.level1;
 
-public class HelloWorld {
+import java.util.Scanner;
 
+public class AmulB {
 	public static void main(String[] args) {
-		System.out.println("Hello World!");
+		AmulB.java
 	}
 }

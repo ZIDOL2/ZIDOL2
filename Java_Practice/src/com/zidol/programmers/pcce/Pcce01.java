@@ -1,4 +1,4 @@
-package com.zidol.programmers.pcce;
+package src.com.zidol.programmers.pcce;
 
 public class Pcce01 {
 	//PCCE 기출문제 1번 / 출력

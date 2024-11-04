@@ -1,4 +1,4 @@
-package com.zidol.programmers.pcce;
+package src.com.zidol.programmers.pcce;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package com.zidol.study99club.beginner;
+package src.com.zidol.study99club.beginner;
 
 public class day2 {
 

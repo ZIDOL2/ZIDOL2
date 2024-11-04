@@ -1,4 +1,4 @@
-package com.zidol.baekjoon.level3;
+package src.com.zidol.baekjoon.level3;
 
 import java.io.BufferedReader;
 import java.io.IOException;

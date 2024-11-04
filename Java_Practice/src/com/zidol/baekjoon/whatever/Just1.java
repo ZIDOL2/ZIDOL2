@@ -1,4 +1,4 @@
-package com.zidol.baekjoon.whatever;
+package src.com.zidol.baekjoon.whatever;
 
 import java.util.Scanner;
 

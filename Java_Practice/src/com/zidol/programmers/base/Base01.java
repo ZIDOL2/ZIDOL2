@@ -1,4 +1,4 @@
-package com.zidol.programmers.base;
+package src.com.zidol.programmers.base;
 
 import java.util.Arrays;
 import java.util.Scanner;

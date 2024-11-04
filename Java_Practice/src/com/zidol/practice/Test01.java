@@ -1,4 +1,4 @@
-package com.zidol.practice;
+package src.com.zidol.practice;
 
 public class Test01 {
 

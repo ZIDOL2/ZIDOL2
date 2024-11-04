@@ -1,4 +1,4 @@
-package com.zidol.baekjoon.level1;
+package src.com.zidol.baekjoon.level1;
 
 import java.util.Scanner;
 public class ThreeDigitMul {

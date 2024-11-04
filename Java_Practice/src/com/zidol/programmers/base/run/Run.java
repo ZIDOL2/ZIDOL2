@@ -1,4 +1,4 @@
-package com.zidol.programmers.base.run;
+package src.com.zidol.programmers.base.run;
 
 import com.zidol.programmers.base.Base01;
 
