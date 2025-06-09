@@ -1,1 +1,11 @@
+# Java 컴파일 결과물
 /out/
+*.class
+
+# IntelliJ 설정
+.idea/
+*.iml
+
+# OS별 무시 파일
+.DS_Store
+Thumbs.db
