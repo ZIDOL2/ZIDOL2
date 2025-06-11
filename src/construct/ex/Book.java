@@ -24,4 +24,5 @@ public class Book {
     void displayInfo() {
         System.out.println("title: " + title + ", author: " + author + ", page: "+ page);
     }
+    
 }
