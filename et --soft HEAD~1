@@ -1,0 +1,131 @@
+* [33m0a8d95b[m[33m ([m[1;31morigin/java-basic[m[33m)[m Create README.md
+[31m|[m * [33m9aad1fe[m[33m ([m[1;36mHEAD -> [m[1;32mjava-basic[m[33m)[m static
+[31m|[m[31m/[m  
+* [33m90dec98[m access done
+* [33md95901b[m package and access
+* [33mfe49d49[m 커밋 다시
+* [33m3ab14e1[m package
+* [33m854fa2e[m constructor
+* [33m0617de0[m ëremove .idea/
+* [33mbf16a27[m Remove iml and build folders from Git tracking
+* [33m03f4cf1[m change ignore
+* [33m2f8e8ad[m ignore out/production directory
+* [33md0d47f2[m first commit
+* [33m955037e[m[33m ([m[1;31morigin/javastudy[m[33m)[m commt?
+* [33m60d29e3[m # WARNING: head commit changed in the meantime
+*   [33m0b9a926[m Merge branch 'javastudy' of https://github.com/ZIDOL2/ZIDOL2.git into javastudy
+[34m|[m[35m\[m  
+[34m|[m * [33ma3a924c[m Delete Java_Practice/.project
+[34m|[m * [33ma72e75c[m Delete Java_Practice/.classpath
+[34m|[m * [33m89a3ca9[m Delete Java_Practice/src/com/zidol/baekjoon/level3/APlusB_8.class
+[34m|[m * [33m750d809[m Delete Java_Practice/src/com/zidol/baekjoon/level3/APlusB_7.class
+[34m|[m * [33m68a7323[m Delete Java_Practice/src/com/zidol/baekjoon/level3/APlusB_4.class
+[34m|[m * [33m86732b4[m Delete Java_Practice/src/com/zidol/baekjoon/level3/APlusB_5.class
+[34m|[m * [33m4004d16[m Delete Java_Practice/src/com/zidol/baekjoon/level3/APlusB_2.class
+[34m|[m * [33m9666061[m Delete Java_Practice/src/com/zidol/baekjoon/level3/APlusB.class
+[34m|[m * [33m6c364e7[m Delete Java_Practice/src/com/zidol/baekjoon/level4/Array2.class
+[34m|[m * [33m8041e27[m Delete Java_Practice/src/com/zidol/baekjoon/level4/Array1.class
+[34m|[m * [33m4b8e3de[m Delete Java_Practice/src/com/zidol/baekjoon/level2/Year.class
+[34m|[m * [33m5180e30[m Delete Java_Practice/src/com/zidol/baekjoon/level2/TestResult.class
+[34m|[m * [33mcfcb1a0[m Delete Java_Practice/src/com/zidol/baekjoon/level2/Quadrant.class
+[34m|[m * [33m729ce42[m Delete Java_Practice/src/com/zidol/baekjoon/level2/Oven.class
+[34m|[m * [33m5e7ece4[m Delete Java_Practice/src/com/zidol/baekjoon/level2/If1.class
+[34m|[m * [33m8615566[m Delete Java_Practice/src/com/zidol/baekjoon/level2/Dice.class
+[34m|[m * [33m1b815ed[m Delete Java_Practice/src/com/zidol/baekjoon/level2/Alam.class
+[34m|[m * [33m973d584[m Delete Java_Practice/src/com/zidol/baekjoon/level1/Years.class
+[34m|[m * [33m31da97b[m Delete Java_Practice/src/com/zidol/baekjoon/level1/Rest.class
+[34m|[m * [33m3f3cc5c[m Delete Java_Practice/src/com/zidol/baekjoon/level1/ThreeAdd.class
+[34m|[m * [33m418f561[m Delete Java_Practice/src/com/zidol/baekjoon/level1/ThreeDigitMul.class
+[34m|[m * [33m84b39e1[m Delete Java_Practice/src/com/zidol/baekjoon/level1/Realization.class
+[34m|[m * [33mcb10f1c[m Delete Java_Practice/src/com/zidol/baekjoon/level1/Main.class
+[34m|[m * [33mb399a09[m Delete Java_Practice/src/com/zidol/baekjoon/level1/HelloWorld.class
+[34m|[m * [33mdb6900a[m Delete Java_Practice/src/com/zidol/baekjoon/level1/FourFundamental.class
+[34m|[m * [33mc75ee42[m Delete Java_Practice/src/com/zidol/baekjoon/level1/Dog.class
+[34m|[m * [33m62acaf0[m Delete Java_Practice/src/com/zidol/baekjoon/level1/Cat.class
+[34m|[m * [33m850cc9a[m Delete Java_Practice/src/com/zidol/baekjoon/level1/AmulB.class
+[34m|[m * [33m76a49c0[m Delete Java_Practice/src/com/zidol/baekjoon/level1/AminusB.class
+[34m|[m * [33m16dd702[m Delete Java_Practice/src/com/zidol/baekjoon/level1/AdivisionB.class
+[34m|[m * [33m6c13998[m Delete Java_Practice/src/com/zidol/baekjoon/level1/APlusB.class
+[34m|[m * [33m2a266cc[m Delete Java_Practice/src/com/zidol/practice/Test01.class
+[34m|[m * [33m2f64de5[m Delete Java_Practice/src/com/zidol/programmers/base/Base01.class
+[34m|[m * [33m594abef[m Delete Java_Practice/src/com/zidol/study99club/beginner/day6.class
+[34m|[m * [33me897590[m Delete Java_Practice/src/com/zidol/study99club/beginner/day5.class
+[34m|[m * [33mcbc0b74[m Delete Java_Practice/src/com/zidol/study99club/beginner/day4.class
+[34m|[m * [33m48055bd[m Delete Java_Practice/src/com/zidol/study99club/beginner/day3.class
+[34m|[m * [33m7e32389[m Delete Java_Practice/src/com/zidol/study99club/beginner/day2.class
+[34m|[m * [33mca1365b[m Delete Java_Practice/src/com/zidol/study99club/beginner/day1.class
+* [35m|[m [33m5fed67d[m 7일차
+* [35m|[m [33mbc85cf8[m ignore
+[35m|[m[35m/[m  
+* [33m7be0ca8[m 항해99 day1-6
+* [33m7a300eb[m 자원반납!!
+* [33m93425fb[m 항해99 시작
+* [33m4c47dcf[m 20241020 오랜만에 commit
+* [33mf89df60[m gitignore 설정을 해도 .class 파일이 추가된다..
+*   [33m83aa0b7[m Merge branch 'javastudy' of https://github.com/ZIDOL2/ZIDOL2.git into javastudy
+[36m|[m[1;31m\[m  
+[36m|[m * [33m86a400f[m Update README.md
+[36m|[m * [33m9351a33[m Update README.md
+* [1;31m|[m [33md0b32e2[m .gitignore, .class 파일 삭제
+[1;31m|[m[1;31m/[m  
+* [33m20082af[m 백준 기초 level2
+*   [33m3cf2c78[m Merge branch 'javastudy' of https://github.com/ZIDOL2/ZIDOL2.git into javastudy
+[1;32m|[m[1;33m\[m  
+[1;32m|[m * [33m4fe8ba0[m Update README.md
+* [1;33m|[m [33m2ae9aa0[m classpath?
+* [1;33m|[m [33m1651955[m 프로그래머스 기초 연습
+* [1;33m|[m [33mf6a20e7[m 백준 단계로 풀기 level1
+[1;33m|[m[1;33m/[m  
+* [33m0923096[m 기출문제 4번
+* [33mbcb5159[m 기출문제 3번
+* [33m49af335[m 폴더정리/기출문제 2번
+* [33m322b1fb[m base run
+* [33m1bf6ff8[m 프로그래머스 문제 연습
+* [33m162bc5f[m 테스트 classpath랑 gitignore 커밋해도 괜찮은걸까?
+[1;33m|[m * [33m02ac69c[m[33m ([m[1;31morigin/main[m[33m)[m 공부는 개별 브런치
+[1;33m|[m * [33mfef7fd1[m 자바는 개별브런치!
+[1;33m|[m * [33mc45b9ee[m Update README.md
+[1;33m|[m * [33m0f6ccc6[m Update README.md
+[1;33m|[m * [33mdde01a5[m Update README.md
+[1;33m|[m * [33m7105654[m Update README.md
+[1;33m|[m *   [33m60546be[m Merge pull request #2 from ZIDOL2/revert-1-javaPractice
+[1;33m|[m [1;35m|[m[1;36m\[m  
+[1;33m|[m [1;35m|[m * [33m2734f21[m Revert "자바 공부 깃허브 연동 성공"
+[1;33m|[m [1;35m|[m[1;35m/[m  
+[1;33m|[m *   [33mb2a4b86[m Merge pull request #1 from ZIDOL2/javaPractice
+[1;33m|[m [31m|[m[1;33m\[m  
+[1;33m|[m [31m|[m[1;33m/[m  
+[1;33m|[m[1;33m/[m[31m|[m   
+* [31m|[m [33mec1bbcc[m 깃허브 연동 성공?
+[31m|[m[31m/[m  
+* [33m03a3ec9[m Update README.md
+* [33m24a3d0a[m Update README.md
+* [33m9e58adb[m Update README.md
+* [33m9d51bde[m Update README.md
+* [33m433a69c[m Update README.md
+* [33md10d2d0[m Update README.md
+* [33m9e98049[m Update README.md
+* [33m8022a36[m Update README.md
+* [33mf7fde54[m Update README.md
+* [33m8b92663[m Update README.md
+* [33m41e7e1b[m Update README.md
+* [33m5ca1237[m Update README.md
+* [33m3c98e8c[m Update README.md
+* [33me28e9af[m Update README.md
+* [33mb655385[m Update README.md
+* [33m0a33779[m Update README.md
+* [33me5559f3[m Update README.md
+* [33m29d63f0[m Update README.md
+* [33mf0f4fed[m Update README.md
+* [33m4e2448a[m Update README.md
+* [33m58609aa[m Update README.md
+* [33m6a3c3b5[m Update README.md
+* [33me015e6d[m Update README.md
+* [33m613e09e[m Update README.md
+* [33mac97f6e[m Update README.md
+* [33m5173cc8[m Update README.md
+* [33me6e0c99[m Update README.md
+* [33mfa1531d[m Update README.md
+* [33m4354fab[m Update README.md
+* [33mb59c712[m firstMyReadMe
+* [33mbc7894c[m Initial commit
