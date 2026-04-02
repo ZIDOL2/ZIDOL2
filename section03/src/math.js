@@ -18,7 +18,7 @@ module.exports = {
 
 //export { add, sub };
 
-// 모듈을 대표하는 default값을 내보내는 방법
+// 모듈을 대표하는 default값을 내보내는 방법미쳐
 export default function multiply(a, b) {
   return a * b;
 }
