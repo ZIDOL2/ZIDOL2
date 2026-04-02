@@ -1,0 +1,25 @@
+{
+  "name": "section03",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "jisu": "echo  \"헤헤헤ㅔ"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZIDOL2/ZIDOL2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ZIDOL2/ZIDOL2/issues"
+  },
+  "homepage": "https://github.com/ZIDOL2/ZIDOL2#readme",
+  "description": "",
+  "dependencies": {
+    "randomcolor": "^0.6.2"
+  }
+}
