@@ -1,0 +1,8 @@
+package.json
+package-lock.json
+vite.config.js
+eslint.config.js
+**/.git
+**/.svn
+**/.hg
+**/node_modules
