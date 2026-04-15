@@ -1,0 +1,40 @@
+@keyframes border-blink {
+  0% {
+    border-color: rgb(37, 147, 255);
+  }
+
+  50% {
+    border-color: rgb(75, 165, 255);
+  }
+
+  100% {
+    border-color: rgb(37, 147, 255);
+  }
+}
+
+.Editor {
+  display: flex;
+  gap: 10px;
+}
+
+.Editor input {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 5px;
+}
+
+.Editor input:focus {
+  border: 2px solid rgb(37, 147, 255);
+  outline: none;
+  animation: border-blink 2s ease-in-out infinite;
+}
+
+.Editor button {
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(48, 147, 247);
+  width: 80px;
+}
