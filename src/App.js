@@ -1,122 +1,254 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
+import './App.css';
 
-// PDF.js 호환을 위한 Worker 설정 (CDN 방식)
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 function App() {
   const [file, setFile] = useState(null);
   const [numPages, setNumPages] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isConverting, setIsConverting] = useState(false);
 
-  // 파일 선택 이벤트 핸들러
-  const onFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile && selectedFile.type === 'application/pdf') {
-      setFile(selectedFile);
+  const handleFile = (selected) => {
+    if (selected?.type === 'application/pdf') {
+      setFile(selected);
+      setNumPages(null);
     } else {
       alert('PDF 파일만 선택해 주세요!');
     }
   };
 
-  // PDF 로드 성공 시 페이지 수 저장
+  const onFileChange = (e) => handleFile(e.target.files[0]);
+
+  const onDragOver = useCallback((e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  }, []);
+
+  const onDragLeave = useCallback((e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  }, []);
+
+  const onDrop = useCallback((e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    handleFile(e.dataTransfer.files[0]);
+  }, []);
+
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
 
-  return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>PDF 파일 업로드 및 미리보기</h2>
+  const handleUpload = async () => {
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('receipt', file);
+    await fetch('/api/upload', { method: 'POST', body: formData });
+    alert('저장 완료!');
+  };
 
-      {/* 파일 업로드 영역 */}
-      <div style={styles.uploadBox}>
+  // PDF → 이미지 변환 후 다운로드
+  const handleDownloadImages = async () => {
+    if (!file || !numPages) return;
+    setIsConverting(true);
+
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdfDoc = await pdfjs.getDocument({ data: arrayBuffer }).promise;
+
+      for (let i = 1; i <= pdfDoc.numPages; i++) {
+        const page = await pdfDoc.getPage(i);
+        const viewport = page.getViewport({ scale: 2.0 }); // scale 높을수록 고화질
+
+        // canvas 생성
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        const ctx = canvas.getContext('2d');
+
+        // 흰 배경 설정 (JPG는 투명 미지원)
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        await page.render({ canvasContext: ctx, viewport }).promise;
+
+        // 이미지 다운로드
+        const link = document.createElement('a');
+        link.download = `${file.name.replace('.pdf', '')}_${i}페이지.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        // 페이지 간 딜레이 (브라우저 다운로드 충돌 방지)
+        await new Promise((res) => setTimeout(res, 300));
+      }
+    } catch (err) {
+      alert('이미지 변환 중 오류가 발생했습니다.');
+      console.error(err);
+    } finally {
+      setIsConverting(false);
+    }
+  };
+
+const handleDownloadExcel = async () => {
+  if (!file || !numPages) return;
+  setIsConverting(true);
+
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdfDoc = await pdfjs.getDocument({ data: arrayBuffer }).promise;
+
+    const ExcelJS = (await import('exceljs')).default;
+    const workbook = new ExcelJS.Workbook();
+
+    // 시트 1개만 생성
+    const sheet = workbook.addWorksheet('영수증');
+
+    let currentRow = 1; // 현재 삽입 행 위치
+
+    for (let i = 1; i <= pdfDoc.numPages; i++) {
+      const page = await pdfDoc.getPage(i);
+      const viewport = page.getViewport({ scale: 2.0 });
+
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      const base64 = canvas.toDataURL('image/png').split(',')[1];
+
+      const imgWidth = viewport.width / 2;
+      const imgHeight = viewport.height / 2;
+
+      const imageId = workbook.addImage({
+        base64,
+        extension: 'png',
+      });
+
+      // 세로로 순서대로 삽입
+      sheet.addImage(imageId, {
+        tl: { col: 0, row: currentRow - 1 },
+        ext: { width: imgWidth, height: imgHeight },
+      });
+
+      // 이미지 높이만큼 행 높이 설정
+      const rowCount = Math.ceil(imgHeight / 20); // 행 개수 계산
+      for (let r = currentRow; r < currentRow + rowCount; r++) {
+        sheet.getRow(r).height = 20; // 행 높이 고정
+      }
+
+      currentRow += rowCount + 2; // 다음 이미지 위치 (간격 2행)
+    }
+
+    // 열 너비 설정
+    sheet.getColumn(1).width = 100;
+
+    // 엑셀 다운로드
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${file.name.replace('.pdf', '')}_영수증.xlsx`;
+    link.click();
+
+  } catch (err) {
+    alert('엑셀 변환 중 오류가 발생했습니다.');
+    console.error(err);
+  } finally {
+    setIsConverting(false);
+  }
+};
+
+  return (
+    <div className="container">
+      <h2 className="title">영수증 첨부</h2>
+
+      {/* 파일 업로드 + 드래그앤드롭 */}
+      <div
+        className={`uploadBox ${isDragging ? 'dragging' : ''}`}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
+      >
         <input
-          type='file'
-          accept='.pdf'
+          type="file"
+          accept=".pdf"
           onChange={onFileChange}
-          id='file-upload'
-          style={styles.fileInput}
+          id="file-upload"
+          className="fileInput"
         />
-        <label htmlFor='file-upload' style={styles.uploadLabel}>
-          {file ? `선택된 파일: ${file.name}` : '클릭하여 PDF 파일 업로드'}
+        <label htmlFor="file-upload" className="uploadLabel">
+          {file
+            ? `선택된 파일: ${file.name}`
+            : isDragging
+            ? '여기에 놓으세요!'
+            : '클릭하거나 PDF 파일을 여기에 드래그하세요'}
         </label>
       </div>
 
-      {/* 미리보기 영역 */}
-      <div style={styles.previewContainer}>
-        {file ? (
+      {/* 버튼 영역 */}
+     <div className="buttonGroup">
+  <button onClick={handleUpload} disabled={!file} className="button">
+    저장
+  </button>
+  <button
+    onClick={handleDownloadImages}
+    disabled={!file || isConverting}
+    className="buttonDownload"
+  >
+    {isConverting ? '변환 중...' : '이미지로 다운로드'}
+  </button>
+  <button
+    onClick={handleDownloadExcel}
+    disabled={!file || isConverting}
+    className="buttonExcel"
+  >
+    {isConverting ? '변환 중...' : '엑셀로 다운로드'}
+  </button>
+</div>
+
+      {/* 전체 페이지 미리보기 */}
+      {file && (
+        <div className="previewContainer">
           <Document
             file={file}
             onLoadSuccess={onDocumentLoadSuccess}
-            loading={<p>PDF를 불러오는 중...</p>}
+            loading={<p className="loading">PDF를 불러오는 중...</p>}
           >
-            <Page
-              pageNumber={1}
-              width={500}
-              renderTextLayer={false}
-              renderAnnotationLayer={false}
-            />
-            <p style={styles.pageInfo}>
-              총 {numPages}페이지 중 1페이지 미리보기
-            </p>
+            {numPages &&
+              Array.from({ length: numPages }, (_, i) => (
+                <div key={`page_${i + 1}`} className="pageWrapper">
+                  <Page
+                    pageNumber={i + 1}
+                    width={500}
+                    renderTextLayer={false}
+                    renderAnnotationLayer={false}
+                  />
+                  <p className="pageInfo">
+                    {i + 1} / {numPages} 페이지
+                  </p>
+                </div>
+              ))}
           </Document>
-        ) : (
-          <div style={styles.placeholder}>
-            파일을 업로드하면 여기에 미리보기가 표시됩니다.
-          </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {!file && (
+        <div className="placeholder">
+          파일을 업로드하면 여기에 미리보기가 표시됩니다.
+        </div>
+      )}
     </div>
   );
 }
-
-// 간단한 인라인 스타일
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '40px',
-    fontFamily: 'sans-serif',
-    backgroundColor: '#f9f9f9',
-    minHeight: '100vh',
-  },
-  title: { color: '#333' },
-  uploadBox: {
-    margin: '20px 0',
-    padding: '20px',
-    border: '2px dashed #007bff',
-    borderRadius: '10px',
-    backgroundColor: '#fff',
-    cursor: 'pointer',
-  },
-  fileInput: { display: 'none' },
-  uploadLabel: {
-    cursor: 'pointer',
-    color: '#007bff',
-    fontWeight: 'bold',
-  },
-  previewContainer: {
-    marginTop: '20px',
-    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-    backgroundColor: '#fff',
-    lineHeight: 0, // 하단 여백 제거
-  },
-  placeholder: {
-    padding: '100px',
-    color: '#aaa',
-    border: '1px solid #eee',
-  },
-  pageInfo: {
-    padding: '10px',
-    margin: 0,
-    backgroundColor: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: '14px',
-    lineHeight: '1.5',
-  },
-};
 
 export default App;
