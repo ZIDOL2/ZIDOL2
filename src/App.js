@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 
 // PDF.js 호환을 위한 Worker 설정 (CDN 방식)
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -13,10 +13,10 @@ function App() {
   // 파일 선택 이벤트 핸들러
   const onFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    if (selectedFile && selectedFile.type === "application/pdf") {
+    if (selectedFile && selectedFile.type === 'application/pdf') {
       setFile(selectedFile);
     } else {
-      alert("PDF 파일만 선택해 주세요!");
+      alert('PDF 파일만 선택해 주세요!');
     }
   };
 
@@ -28,18 +28,18 @@ function App() {
   return (
     <div style={styles.container}>
       <h2 style={styles.title}>PDF 파일 업로드 및 미리보기</h2>
-      
+
       {/* 파일 업로드 영역 */}
       <div style={styles.uploadBox}>
-        <input 
-          type="file" 
-          accept=".pdf" 
-          onChange={onFileChange} 
-          id="file-upload"
+        <input
+          type='file'
+          accept='.pdf'
+          onChange={onFileChange}
+          id='file-upload'
           style={styles.fileInput}
         />
-        <label htmlFor="file-upload" style={styles.uploadLabel}>
-          {file ? `선택된 파일: ${file.name}` : "클릭하여 PDF 파일 업로드"}
+        <label htmlFor='file-upload' style={styles.uploadLabel}>
+          {file ? `선택된 파일: ${file.name}` : '클릭하여 PDF 파일 업로드'}
         </label>
       </div>
 
@@ -51,13 +51,15 @@ function App() {
             onLoadSuccess={onDocumentLoadSuccess}
             loading={<p>PDF를 불러오는 중...</p>}
           >
-            <Page 
-              pageNumber={1} 
-              width={500} 
-              renderTextLayer={false} 
-              renderAnnotationLayer={false} 
+            <Page
+              pageNumber={1}
+              width={500}
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
             />
-            <p style={styles.pageInfo}>총 {numPages}페이지 중 1페이지 미리보기</p>
+            <p style={styles.pageInfo}>
+              총 {numPages}페이지 중 1페이지 미리보기
+            </p>
           </Document>
         ) : (
           <div style={styles.placeholder}>
@@ -114,7 +116,7 @@ const styles = {
     textAlign: 'center',
     fontSize: '14px',
     lineHeight: '1.5',
-  }
+  },
 };
 
 export default App;
