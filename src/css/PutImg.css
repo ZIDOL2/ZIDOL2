@@ -1,0 +1,131 @@
+.putimg-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+.putimg-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #3f51b5;
+}
+
+/* ===== 드롭존 ===== */
+.putimg-dropzone {
+  border: 2px dashed #9fa8da;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  cursor: pointer;
+  background: #fafafe;
+}
+.putimg-dropzone.dragging {
+  border-color: #3f51b5;
+  background: #e8eaf6;
+}
+.putimg-input {
+  display: none;
+}
+.putimg-label {
+  cursor: pointer;
+  color: #5c6bc0;
+  font-size: 15px;
+}
+.putimg-count {
+  margin: 16px 0 8px;
+  color: #666;
+}
+
+/* ===== 이미지 그리드 ===== */
+.putimg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.putimg-thumb {
+  position: relative;
+  border: 1px solid #c5cae9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.putimg-thumb img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+.putimg-thumb-name {
+  font-size: 11px;
+  padding: 4px 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  color: #555;
+}
+.putimg-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(63, 81, 181, 0.6);
+  color: #fafafe;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.putimg-remove:hover {
+  background: rgba(40, 53, 147, 0.85);
+}
+
+/* ===== 버튼 그룹 ===== */
+.putimg-btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.putimg-save-btn {
+  padding: 12px 32px;
+  background: #3f51b5;
+  color: #fafafe;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.putimg-save-btn:hover {
+  background: #303f9f;
+}
+.putimg-save-btn:disabled {
+  background: #c5cae9;
+  cursor: not-allowed;
+}
+
+/* ===== PDF 미리보기 ===== */
+.putimg-pdf-preview {
+  margin-top: 20px;
+  border: 1px solid #c5cae9;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fafafe;
+}
+.putimg-page-wrapper {
+  margin-bottom: 16px;
+  text-align: center;
+}
+.putimg-page-info {
+  font-size: 13px;
+  color: #5c6bc0;
+  margin-top: 8px;
+}
+.putimg-loading {
+  text-align: center;
+  color: #9fa8da;
+  padding: 20px;
+}

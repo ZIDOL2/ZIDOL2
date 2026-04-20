@@ -1,0 +1,159 @@
+/* ===== 공통 초기화 ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Calibri', sans-serif;
+  background: #fafafe;
+}
+
+/* ===== 네비게이션 ===== */
+.nav {
+  padding: 12px 24px;
+  border-bottom: 2px solid #c5cae9;
+  display: flex;
+  gap: 20px;
+  background: #3f51b5;
+}
+.nav a {
+  text-decoration: none;
+  color: #fafafe;
+  font-size: 15px;
+  font-weight: 600;
+}
+.nav a:hover {
+  color: #c5cae9;
+}
+
+/* ===== PDF 뷰어 ===== */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+.title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #3f51b5;
+}
+
+.uploadBox {
+  border: 2px dashed #9fa8da;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  background: #fafafe;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  margin-bottom: 16px;
+}
+.uploadBox.dragging {
+  border-color: #3f51b5;
+  background: #e8eaf6;
+}
+.fileInput {
+  display: none;
+}
+.uploadLabel {
+  cursor: pointer;
+  color: #5c6bc0;
+  font-size: 15px;
+}
+
+/* ===== 버튼 그룹 ===== */
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding: 10px 24px;
+  background: #3f51b5;
+  color: #fafafe;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.button:hover {
+  background: #303f9f;
+}
+.button:disabled {
+  background: #c5cae9;
+  cursor: not-allowed;
+}
+
+.buttonDownload {
+  padding: 10px 24px;
+  background: #5c6bc0;
+  color: #fafafe;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.buttonDownload:hover {
+  background: #3f51b5;
+}
+.buttonDownload:disabled {
+  background: #c5cae9;
+  cursor: not-allowed;
+}
+
+.buttonExcel {
+  padding: 10px 24px;
+  background: #283593;
+  color: #fafafe;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.buttonExcel:hover {
+  background: #1a237e;
+}
+.buttonExcel:disabled {
+  background: #c5cae9;
+  cursor: not-allowed;
+}
+
+/* ===== PDF 미리보기 ===== */
+.previewContainer {
+  margin-top: 20px;
+  border: 1px solid #c5cae9;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fafafe;
+}
+.pageWrapper {
+  margin-bottom: 16px;
+  text-align: center;
+}
+.pageInfo {
+  font-size: 13px;
+  color: #5c6bc0;
+  margin-top: 8px;
+}
+.loading {
+  text-align: center;
+  color: #9fa8da;
+  padding: 20px;
+}
+.placeholder {
+  text-align: center;
+  color: #9fa8da;
+  padding: 40px;
+  border: 2px dashed #c5cae9;
+  border-radius: 12px;
+  margin-top: 20px;
+  background: #fafafe;
+}
