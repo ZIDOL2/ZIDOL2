@@ -62,7 +62,7 @@ export default function PutImg() {
   const removeImage = (index) => {
     setPreviews((prev) => {
       // URL.revokeObjectURL: createObjectURL로 만든 임시 URL 메모리 해제
-      // 안 하면 메모리 누수 발생!
+      // 안 하면 메모리 누수 발생
       URL.revokeObjectURL(prev[index].objectUrl);
       return prev.filter((_, i) => i !== index);
     });
