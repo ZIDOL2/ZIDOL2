@@ -1,0 +1,69 @@
+.pdfdialog {
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  width: 90vw;
+  max-width: 900px;
+  height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(63, 81, 181, 0.3);
+  /* 드래그로 이동하기 위해 position 고정 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+}
+
+.pdfdialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* ===== 헤더 - 드래그 핸들 ===== */
+.pdfdialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #3F51B5;
+  /* 드래그 커서 */
+  cursor: grab;
+  flex-shrink: 0;
+  user-select: none; /* 드래그 중 텍스트 선택 방지 */
+}
+
+/* 드래그 중 커서 변경 */
+.pdfdialog-header.dragging {
+  cursor: grabbing;
+}
+
+.pdfdialog-filename {
+  font-size: 14px;
+  color: #FAFAFE;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.pdfdialog-close {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #FAFAFE;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.pdfdialog-close:hover { background: rgba(220, 53, 69, 0.6); }
+
+/* ===== iframe PDF 뷰어 ===== */
+.pdfdialog-iframe {
+  width: 100%;
+  height: calc(90vh - 56px);
+  border: none;
+  display: block;
+}
