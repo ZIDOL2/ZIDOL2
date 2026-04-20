@@ -1,0 +1,101 @@
+.putimg-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+.putimg-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #2e7d5e;
+}
+
+.putimg-dropzone {
+  border: 2px dashed #80cbc4;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  cursor: pointer;
+  background: #f6fffc;
+}
+.putimg-dropzone.dragging {
+  border-color: #1abc9c;
+  background: #e0f7f3;
+}
+.putimg-input {
+  display: none;
+}
+.putimg-label {
+  cursor: pointer;
+  color: #4db6ac;
+  font-size: 15px;
+}
+
+.putimg-count {
+  margin: 16px 0 8px;
+  color: #666;
+}
+
+.putimg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.putimg-thumb {
+  position: relative;
+  border: 1px solid #b2dfdb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.putimg-thumb img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+.putimg-thumb-name {
+  font-size: 11px;
+  padding: 4px 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  color: #555;
+}
+.putimg-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0, 128, 100, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.putimg-remove:hover {
+  background: rgba(0, 100, 80, 0.85);
+}
+
+.putimg-save-btn {
+  margin-top: 24px;
+  padding: 12px 32px;
+  background: #1abc9c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.putimg-save-btn:hover {
+  background: #17a589;
+}
+.putimg-save-btn:disabled {
+  background: #b2dfdb;
+  cursor: not-allowed;
+}

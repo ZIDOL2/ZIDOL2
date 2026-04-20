@@ -1,12 +1,16 @@
 import { useCallback, useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
-import './App.css';
+import './css/App.css';
+import PutImg from './components/PutImg';
+import ImgList from './components/ImgList';
 
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
-function App() {
+// 기존 App 내용을 ReceiptPdf 컴포넌트로 분리
+function ReceiptPdf() {
   const [file, setFile] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -51,39 +55,26 @@ function App() {
     alert('저장 완료!');
   };
 
-  // PDF → 이미지 변환 후 다운로드
   const handleDownloadImages = async () => {
     if (!file || !numPages) return;
     setIsConverting(true);
-
     try {
       const arrayBuffer = await file.arrayBuffer();
       const pdfDoc = await pdfjs.getDocument({ data: arrayBuffer }).promise;
-
       for (let i = 1; i <= pdfDoc.numPages; i++) {
         const page = await pdfDoc.getPage(i);
-        const viewport = page.getViewport({ scale: 2.0 }); // scale 높을수록 고화질
-
-        // canvas 생성
+        const viewport = page.getViewport({ scale: 2.0 });
         const canvas = document.createElement('canvas');
         canvas.width = viewport.width;
         canvas.height = viewport.height;
-
         const ctx = canvas.getContext('2d');
-
-        // 흰 배경 설정 (JPG는 투명 미지원)
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
         await page.render({ canvasContext: ctx, viewport }).promise;
-
-        // 이미지 다운로드
         const link = document.createElement('a');
         link.download = `${file.name.replace('.pdf', '')}_${i}페이지.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
-
-        // 페이지 간 딜레이 (브라우저 다운로드 충돌 방지)
         await new Promise((res) => setTimeout(res, 300));
       }
     } catch (err) {
@@ -94,85 +85,60 @@ function App() {
     }
   };
 
-const handleDownloadExcel = async () => {
-  if (!file || !numPages) return;
-  setIsConverting(true);
-
-  try {
-    const arrayBuffer = await file.arrayBuffer();
-    const pdfDoc = await pdfjs.getDocument({ data: arrayBuffer }).promise;
-
-    const ExcelJS = (await import('exceljs')).default;
-    const workbook = new ExcelJS.Workbook();
-
-    // 시트 1개만 생성
-    const sheet = workbook.addWorksheet('영수증');
-
-    let currentRow = 1; // 현재 삽입 행 위치
-
-    for (let i = 1; i <= pdfDoc.numPages; i++) {
-      const page = await pdfDoc.getPage(i);
-      const viewport = page.getViewport({ scale: 2.0 });
-
-      const canvas = document.createElement('canvas');
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
-      const ctx = canvas.getContext('2d');
-      ctx.fillStyle = 'white';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      await page.render({ canvasContext: ctx, viewport }).promise;
-
-      const base64 = canvas.toDataURL('image/png').split(',')[1];
-
-      const imgWidth = viewport.width / 2;
-      const imgHeight = viewport.height / 2;
-
-      const imageId = workbook.addImage({
-        base64,
-        extension: 'png',
-      });
-
-      // 세로로 순서대로 삽입
-      sheet.addImage(imageId, {
-        tl: { col: 0, row: currentRow - 1 },
-        ext: { width: imgWidth, height: imgHeight },
-      });
-
-      // 이미지 높이만큼 행 높이 설정
-      const rowCount = Math.ceil(imgHeight / 20); // 행 개수 계산
-      for (let r = currentRow; r < currentRow + rowCount; r++) {
-        sheet.getRow(r).height = 20; // 행 높이 고정
+  const handleDownloadExcel = async () => {
+    if (!file || !numPages) return;
+    setIsConverting(true);
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdfDoc = await pdfjs.getDocument({ data: arrayBuffer }).promise;
+      const ExcelJS = (await import('exceljs')).default;
+      const workbook = new ExcelJS.Workbook();
+      const sheet = workbook.addWorksheet('영수증');
+      let currentRow = 1;
+      for (let i = 1; i <= pdfDoc.numPages; i++) {
+        const page = await pdfDoc.getPage(i);
+        const viewport = page.getViewport({ scale: 2.0 });
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        await page.render({ canvasContext: ctx, viewport }).promise;
+        const base64 = canvas.toDataURL('image/png').split(',')[1];
+        const imgWidth = viewport.width / 2;
+        const imgHeight = viewport.height / 2;
+        const imageId = workbook.addImage({ base64, extension: 'png' });
+        sheet.addImage(imageId, {
+          tl: { col: 0, row: currentRow - 1 },
+          ext: { width: imgWidth, height: imgHeight },
+        });
+        const rowCount = Math.ceil(imgHeight / 20);
+        for (let r = currentRow; r < currentRow + rowCount; r++) {
+          sheet.getRow(r).height = 20;
+        }
+        currentRow += rowCount + 2;
       }
-
-      currentRow += rowCount + 2; // 다음 이미지 위치 (간격 2행)
+      sheet.getColumn(1).width = 100;
+      const buffer = await workbook.xlsx.writeBuffer();
+      const blob = new Blob([buffer], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `${file.name.replace('.pdf', '')}_영수증.xlsx`;
+      link.click();
+    } catch (err) {
+      alert('엑셀 변환 중 오류가 발생했습니다.');
+      console.error(err);
+    } finally {
+      setIsConverting(false);
     }
-
-    // 열 너비 설정
-    sheet.getColumn(1).width = 100;
-
-    // 엑셀 다운로드
-    const buffer = await workbook.xlsx.writeBuffer();
-    const blob = new Blob([buffer], {
-      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `${file.name.replace('.pdf', '')}_영수증.xlsx`;
-    link.click();
-
-  } catch (err) {
-    alert('엑셀 변환 중 오류가 발생했습니다.');
-    console.error(err);
-  } finally {
-    setIsConverting(false);
-  }
-};
+  };
 
   return (
     <div className="container">
       <h2 className="title">영수증 첨부</h2>
-
-      {/* 파일 업로드 + 드래그앤드롭 */}
       <div
         className={`uploadBox ${isDragging ? 'dragging' : ''}`}
         onDragOver={onDragOver}
@@ -190,33 +156,29 @@ const handleDownloadExcel = async () => {
           {file
             ? `선택된 파일: ${file.name}`
             : isDragging
-            ? '여기에 놓으세요!'
-            : '클릭하거나 PDF 파일을 여기에 드래그하세요'}
+              ? '여기에 놓으세요!'
+              : '클릭하거나 PDF 파일을 여기에 드래그하세요'}
         </label>
       </div>
-
-      {/* 버튼 영역 */}
-     <div className="buttonGroup">
-  <button onClick={handleUpload} disabled={!file} className="button">
-    저장
-  </button>
-  <button
-    onClick={handleDownloadImages}
-    disabled={!file || isConverting}
-    className="buttonDownload"
-  >
-    {isConverting ? '변환 중...' : '이미지로 다운로드'}
-  </button>
-  <button
-    onClick={handleDownloadExcel}
-    disabled={!file || isConverting}
-    className="buttonExcel"
-  >
-    {isConverting ? '변환 중...' : '엑셀로 다운로드'}
-  </button>
-</div>
-
-      {/* 전체 페이지 미리보기 */}
+      <div className="buttonGroup">
+        <button onClick={handleUpload} disabled={!file} className="button">
+          저장
+        </button>
+        <button
+          onClick={handleDownloadImages}
+          disabled={!file || isConverting}
+          className="buttonDownload"
+        >
+          {isConverting ? '변환 중...' : '이미지로 다운로드'}
+        </button>
+        <button
+          onClick={handleDownloadExcel}
+          disabled={!file || isConverting}
+          className="buttonExcel"
+        >
+          {isConverting ? '변환 중...' : '엑셀로 다운로드'}
+        </button>
+      </div>
       {file && (
         <div className="previewContainer">
           <Document
@@ -241,13 +203,30 @@ const handleDownloadExcel = async () => {
           </Document>
         </div>
       )}
-
       {!file && (
         <div className="placeholder">
           파일을 업로드하면 여기에 미리보기가 표시됩니다.
         </div>
       )}
     </div>
+  );
+}
+
+// App은 라우터 역할
+function App() {
+  return (
+    <BrowserRouter>
+      <nav className="nav">
+        <Link to="/">📄 PDF 뷰어</Link>
+        <Link to="/upload">📎 이미지 업로드</Link>
+        <Link to="/list">📋 영수증 목록</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<ReceiptPdf />} />
+        <Route path="/upload" element={<PutImg />} />
+        <Route path="/list" element={<ImgList />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

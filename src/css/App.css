@@ -1,0 +1,155 @@
+/* ===== 공통 nav ===== */
+.nav {
+  padding: 12px 24px;
+  border-bottom: 2px solid #e0f2e9;
+  display: flex;
+  gap: 20px;
+  background: #f6fffc;
+}
+.nav a {
+  text-decoration: none;
+  color: #2e7d5e;
+  font-size: 15px;
+  font-weight: 600;
+}
+.nav a:hover {
+  color: #1abc9c;
+}
+
+/* ===== PDF 뷰어 (기존 ReceiptPdf 컴포넌트) ===== */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #2e7d5e;
+}
+
+.uploadBox {
+  border: 2px dashed #80cbc4;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  background: #f6fffc;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+  margin-bottom: 16px;
+}
+.uploadBox.dragging {
+  border-color: #1abc9c;
+  background: #e0f7f3;
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadLabel {
+  cursor: pointer;
+  color: #4db6ac;
+  font-size: 15px;
+}
+
+/* ===== 버튼 그룹 ===== */
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding: 10px 24px;
+  background: #1abc9c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.button:hover {
+  background: #17a589;
+}
+.button:disabled {
+  background: #b2dfdb;
+  cursor: not-allowed;
+}
+
+.buttonDownload {
+  padding: 10px 24px;
+  background: #48c9b0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.buttonDownload:hover {
+  background: #1abc9c;
+}
+.buttonDownload:disabled {
+  background: #b2dfdb;
+  cursor: not-allowed;
+}
+
+.buttonExcel {
+  padding: 10px 24px;
+  background: #2e7d5e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.buttonExcel:hover {
+  background: #1d6b4f;
+}
+.buttonExcel:disabled {
+  background: #b2dfdb;
+  cursor: not-allowed;
+}
+
+/* ===== PDF 미리보기 ===== */
+.previewContainer {
+  margin-top: 20px;
+  border: 1px solid #b2dfdb;
+  border-radius: 12px;
+  padding: 20px;
+  background: #f6fffc;
+}
+
+.pageWrapper {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.pageInfo {
+  font-size: 13px;
+  color: #4db6ac;
+  margin-top: 8px;
+}
+
+.loading {
+  text-align: center;
+  color: #80cbc4;
+  padding: 20px;
+}
+
+.placeholder {
+  text-align: center;
+  color: #80cbc4;
+  padding: 40px;
+  border: 2px dashed #b2dfdb;
+  border-radius: 12px;
+  margin-top: 20px;
+  background: #f6fffc;
+}
