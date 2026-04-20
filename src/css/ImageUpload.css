@@ -1,0 +1,70 @@
+.imageupload-count {
+  margin: 16px 0 8px;
+  color: #666;
+}
+
+.imageupload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.imageupload-thumb {
+  position: relative;
+  border: 1px solid #c5cae9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.imageupload-thumb img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.imageupload-thumb-name {
+  font-size: 11px;
+  padding: 4px 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  color: #555;
+}
+
+.imageupload-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(63, 81, 181, 0.6);
+  color: #fafafe;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.imageupload-remove:hover {
+  background: rgba(40, 53, 147, 0.85);
+}
+
+.imageupload-save-btn {
+  margin-top: 16px;
+  padding: 12px 32px;
+  background: #3f51b5;
+  color: #fafafe;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.imageupload-save-btn:hover {
+  background: #303f9f;
+}
+.imageupload-save-btn:disabled {
+  background: #c5cae9;
+  cursor: not-allowed;
+}

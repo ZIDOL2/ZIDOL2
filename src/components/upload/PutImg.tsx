@@ -2,65 +2,66 @@
 
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
-import '../css/PutImg.css';
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+import PdfUpload from './PdfUpload';
+import ImageUpload from './ImageUpload';
+import '../../css/PutImg.css';
 
 const API_BASE = 'http://localhost:8080';
 
+// 이미지 미리보기 타입
 interface Preview {
   name: string;
   objectUrl: string;
   file: File;
 }
 
+// 업로드 메인 컴포넌트
+// 파일 선택 시 PDF / 이미지 자동 구분
+// PDF → PdfUpload 컴포넌트 렌더링
+// 이미지 → ImageUpload 컴포넌트 렌더링
 export default function PutImg() {
-  // 이미지 관련 state
-  const [previews, setPreviews] = useState<Preview[]>([]);
-  // PDF 관련 state
-  const [pdfFile, setPdfFile] = useState<File | null>(null);
-  const [numPages, setNumPages] = useState<number | null>(null);
-  // 공통 state
-  const [isDragging, setIsDragging] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
+  const [previews, setPreviews] = useState<Preview[]>([]); // 이미지 미리보기 목록
+  const [pdfFile, setPdfFile] = useState<File | null>(null); // 선택된 PDF 파일
+  const [isDragging, setIsDragging] = useState(false); // 드래그 중 여부
+  const [isSaving, setIsSaving] = useState(false); // 저장 중 여부
   const router = useRouter();
 
   // 파일 처리 - PDF / 이미지 자동 구분
+  // useCallback: 불필요한 재생성 방지
   const handleFiles = useCallback((files: FileList | null) => {
     if (!files) return;
     const fileArr = [...files];
 
+    // PDF 파일 필터링
     const pdfFiles = fileArr.filter((f) => f.type === 'application/pdf');
+    // 이미지 파일 필터링
     const imageFiles = fileArr.filter((f) => f.type.startsWith('image/'));
 
     if (pdfFiles.length > 0) {
-      // PDF는 1개만 허용
+      // PDF 선택 시 - 1개만 허용, 이미지 목록 초기화
       setPdfFile(pdfFiles[0]);
-      setNumPages(null);
-      setPreviews([]); // 이미지 초기화
+      setPreviews([]);
     }
-
     if (imageFiles.length > 0) {
+      // 이미지 선택 시 - 기존 목록에 추가, PDF 초기화
       const newPreviews: Preview[] = imageFiles.map((f) => ({
         name: f.name,
-        objectUrl: URL.createObjectURL(f),
+        objectUrl: URL.createObjectURL(f), // 임시 브라우저 URL 생성
         file: f,
       }));
       setPreviews((prev) => [...prev, ...newPreviews]);
-      setPdfFile(null); // PDF 초기화
-      setNumPages(null);
+      setPdfFile(null);
     }
-
     if (pdfFiles.length === 0 && imageFiles.length === 0) {
       alert('PDF 또는 이미지 파일만 선택해 주세요!');
     }
   }, []);
 
+  // input[type=file] onChange 핸들러
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     handleFiles(e.target.files);
+
+  // 드래그 이벤트 핸들러
   const onDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(true);
@@ -76,6 +77,7 @@ export default function PutImg() {
   };
 
   // 이미지 개별 삭제
+  // URL.revokeObjectURL로 메모리 해제 필수!
   const removeImage = (index: number) => {
     setPreviews((prev) => {
       URL.revokeObjectURL(prev[index].objectUrl);
@@ -83,7 +85,7 @@ export default function PutImg() {
     });
   };
 
-  // PDF 저장
+  // PDF 서버 저장
   const handleSavePdf = async () => {
     if (!pdfFile) return;
     setIsSaving(true);
@@ -105,7 +107,8 @@ export default function PutImg() {
     }
   };
 
-  // 이미지 저장
+  // 이미지 서버 저장
+  // 여러 파일을 같은 key('images')로 append → 서버에서 List<MultipartFile>로 수신
   const handleSaveImages = async () => {
     if (!previews.length) return;
     setIsSaving(true);
@@ -131,13 +134,15 @@ export default function PutImg() {
     <div className="putimg-container">
       <h2 className="putimg-title">📎 영수증 등록</h2>
 
-      {/* 드래그앤드롭 영역 - PDF + 이미지 둘 다 허용 */}
+      {/* 드래그앤드롭 영역
+          PDF + 이미지 둘 다 허용 (accept="image/*,.pdf") */}
       <div
         className={`putimg-dropzone ${isDragging ? 'dragging' : ''}`}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
       >
+        {/* input 숨기고 label로 클릭 이벤트 연결 */}
         <input
           type="file"
           accept="image/*,.pdf"
@@ -153,74 +158,19 @@ export default function PutImg() {
         </label>
       </div>
 
-      {/* ── PDF 선택 시 ── */}
+      {/* PDF 선택 시 → PdfUpload 컴포넌트 */}
       {pdfFile && (
-        <>
-          <p className="putimg-count">📄 {pdfFile.name}</p>
-          <div className="putimg-btn-group">
-            <button
-              className="putimg-save-btn"
-              onClick={handleSavePdf}
-              disabled={isSaving}
-            >
-              {isSaving ? '저장 중...' : '💾 저장'}
-            </button>
-          </div>
-          {/* PDF 미리보기 */}
-          <div className="putimg-pdf-preview">
-            <Document
-              file={pdfFile}
-              onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-              loading={<p className="putimg-loading">PDF 불러오는 중...</p>}
-            >
-              {numPages &&
-                Array.from({ length: numPages }, (_, i) => (
-                  <div key={`page_${i + 1}`} className="putimg-page-wrapper">
-                    <Page
-                      pageNumber={i + 1}
-                      width={500}
-                      renderTextLayer={false}
-                      renderAnnotationLayer={false}
-                    />
-                    <p className="putimg-page-info">
-                      {i + 1} / {numPages} 페이지
-                    </p>
-                  </div>
-                ))}
-            </Document>
-          </div>
-        </>
+        <PdfUpload file={pdfFile} isSaving={isSaving} onSave={handleSavePdf} />
       )}
 
-      {/* ── 이미지 선택 시 ── */}
+      {/* 이미지 선택 시 → ImageUpload 컴포넌트 */}
       {previews.length > 0 && (
-        <>
-          <p className="putimg-count">선택된 이미지: {previews.length}장</p>
-          <div className="putimg-grid">
-            {previews.map((img, i) => (
-              <div key={i} className="putimg-thumb">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={img.objectUrl} alt={img.name} />
-                <p className="putimg-thumb-name">{img.name}</p>
-                <button
-                  className="putimg-remove"
-                  onClick={() => removeImage(i)}
-                >
-                  ✕
-                </button>
-              </div>
-            ))}
-          </div>
-          <div className="putimg-btn-group">
-            <button
-              className="putimg-save-btn"
-              onClick={handleSaveImages}
-              disabled={isSaving}
-            >
-              {isSaving ? '저장 중...' : '💾 저장하기'}
-            </button>
-          </div>
-        </>
+        <ImageUpload
+          previews={previews}
+          isSaving={isSaving}
+          onSave={handleSaveImages}
+          onRemove={removeImage}
+        />
       )}
     </div>
   );
